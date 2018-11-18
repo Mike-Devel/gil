@@ -223,6 +223,18 @@ if(GIL_ENABLE_EXT_IO)
   endif()
 endif()
 
+add_library(boost_gil INTERFACE)
+target_include_directories(boost_gil INTERFACE include)
+add_library(Boost::gil ALIAS boost_gil)
+
+target_link_libraries(boost_gil INTERFACE
+  Boost::filesystem
+  Boost::boost
+  JPEG::JPEG
+  PNG::PNG
+  TIFF::TIFF
+)
+
 #-----------------------------------------------------------------------------
 # clang-tidy
 # - default checks specified in .clang-tidy configuration file
